@@ -386,87 +386,110 @@ Export Report
 
               {/* UPLOAD */}
 
-              <div className="bg-white rounded-[32px] shadow-lg p-8">
+<div className="bg-white rounded-[32px] shadow-lg p-8">
 
-                <h2 className="text-3xl font-bold mb-6">
-                  Upload Resume
-                </h2>
+  <h2 className="text-3xl font-bold mb-6">
+    Upload Resume
+  </h2>
 
-                <label className="border-2 border-dashed border-[#D8B4FE] bg-gradient-to-br from-[#F8FAFC] to-[#F3E8FF] rounded-[28px] min-h-[420px] flex flex-col justify-center items-center cursor-pointer p-8">
+  <label className="border-2 border-dashed border-[#D8B4FE] bg-gradient-to-br from-[#F8FAFC] to-[#F3E8FF] rounded-[28px] min-h-[420px] flex flex-col justify-center items-center cursor-pointer p-8">
 
-                  <div className="bg-[#EEE8FF] p-6 rounded-full mb-6">
+    <div className="bg-[#EEE8FF] p-6 rounded-full mb-6">
 
-                    <Upload
-                      size={52}
-                      className="text-[#7C3AED]"
-                    />
+      <Upload
+        size={52}
+        className="text-[#7C3AED]"
+      />
 
-                  </div>
+    </div>
 
-                  <h3 className="text-3xl font-bold">
-                    Upload Resume Files
-                  </h3>
+    <h3 className="text-3xl font-bold">
+      Upload Resume Files
+    </h3>
 
-                  <p className="text-slate-500 mt-3">
-                    Drag & Drop PDF / DOCX Resumes
+    <p className="text-slate-500 mt-3">
+      Drag & Drop PDF / DOCX Resumes
+    </p>
+
+    <input
+      type="file"
+      multiple
+      accept=".pdf,.doc,.docx"
+      onChange={(e)=>setFiles([...e.target.files])}
+      className="hidden"
+    />
+
+    {
+
+      files.length > 0 && (
+
+        <div className="mt-8 w-full max-w-[500px] bg-white rounded-3xl p-6 shadow-xl">
+
+          <h4 className="text-xl font-bold text-[#7C3AED] mb-4">
+
+            Selected Files ({files.length})
+
+          </h4>
+
+          {
+
+            files.map((f,index)=>(
+
+              <div
+                key={index}
+                className="bg-[#FAF7FF] border rounded-2xl px-5 py-4 mb-3 flex justify-between items-center"
+              >
+
+                <div>
+
+                  <p className="font-semibold">
+                    ✓ {f.name}
                   </p>
 
-                  <input
-                    type="file"
-                    multiple
-                    accept=".pdf,.doc,.docx"
-                    onChange={(e) => setFiles([...e.target.files])}
-                    className="hidden"
-                  />
+                  <p className="text-sm text-slate-500">
+                    {(f.size/1024).toFixed(1)} KB
+                  </p>
 
-                  {
+                </div>
 
-                    files.length > 0 && (
+                <button
 
-                      <div className="mt-8 w-full max-w-[500px] bg-white rounded-3xl p-6 shadow-xl">
+                  onClick={()=>{
 
-                        <h4 className="text-xl font-bold text-[#7C3AED] mb-4">
+                    const updatedFiles =
+                    files.filter((_,i)=>i!==index);
 
-                          Selected Files ({files.length})
+                    setFiles(updatedFiles);
 
-                        </h4>
+                  }}
 
-                        {
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition duration-200"
 
-                          files.map((f, index) => (
+                >
 
-                            <div
-                              key={index}
-                              className="bg-[#FAF7FF] border rounded-2xl px-5 py-4 mb-3"
-                            >
+                  Remove
 
-                              <p className="font-semibold">
-                                ✓ {f.name}
-                              </p>
-
-                              <p className="text-sm text-slate-500">
-                                {(f.size / 1024).toFixed(1)} KB
-                              </p>
-
-                            </div>
-
-                          ))
-
-                        }
-
-                      </div>
-
-                    )
-
-                  }
-
-                </label>
+                </button>
 
               </div>
 
-            </div>
+            ))
 
-            <div id="analytics">
+          }
+
+        </div>
+
+      )
+
+    }
+
+  </label>
+
+</div>
+
+</div>
+
+<div id="analytics">
 
               {/* CHARTS */}
 

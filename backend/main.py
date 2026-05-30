@@ -5,7 +5,7 @@ import os
 
 from parser import parse_resume
 from scorer import calculate_score
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 app.add_middleware(
