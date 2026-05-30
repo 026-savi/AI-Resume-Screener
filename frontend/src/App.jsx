@@ -339,12 +339,20 @@ Export Report
             <div className="bg-[#C4B5FD] rounded-3xl p-6 shadow-lg">
 
               <h2 className="text-lg text-slate-700">
-                Missing Skills
+                Low Match Candidates
               </h2>
 
-              <p className="text-5xl font-bold mt-3">
-                4
-              </p>
+              <p className="text-4xl font-bold">
+
+{
+result.length > 0
+? result.filter(
+candidate => candidate.score < 50
+).length
+: 0
+}
+
+</p>
 
             </div>
 
@@ -375,7 +383,13 @@ Export Report
 
                 <button
                   onClick={analyzeResume}
-                  className="mt-6 bg-gradient-to-r from-[#A7F3D0] to-[#C4B5FD] px-10 py-4 rounded-2xl font-semibold shadow-md"
+
+disabled={!jd.trim() || files.length===0}
+
+className="mt-6 bg-gradient-to-r from-[#A7F3D0] to-[#C4B5FD]
+px-10 py-4 rounded-2xl font-semibold shadow-lg
+disabled:opacity-50
+disabled:cursor-not-allowed"
                 >
 
                   {loading ? "Analyzing..." : "Analyze Resume"}
