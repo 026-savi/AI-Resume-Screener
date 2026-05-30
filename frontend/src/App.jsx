@@ -93,7 +93,7 @@ link.click();
     try {
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/analyze",
+        "https://ai-resume-screener-nu3v.onrender.com/analyze",
         formData
       );
 
